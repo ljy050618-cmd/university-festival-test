@@ -128,14 +128,14 @@ st.markdown("""
 
 .page-text {
     color: #5b555d;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.7;
     margin-top: 14px;
 
 
 .body-text {
     color: #5b555d;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.75;
 }
 
@@ -734,7 +734,7 @@ elif st.session_state.page_index in [1, 2, 3]:
     st.markdown(
         f"""
         <div class="info-card">
-            <div class="section-title">응답 방식</div>
+            <div class="section-title"><응답 방식></div>
             <div class="body-text">
                 각 문항마다 가장 가까운 보기를 하나씩 선택하세요.<br>
             </div>
