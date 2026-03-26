@@ -106,7 +106,9 @@ st.markdown("""
     font-weight: 900;
     line-height: 1.35;
     color: #241f24;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere
 
 }
 
