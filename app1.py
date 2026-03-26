@@ -548,7 +548,7 @@ def get_result_key():
     campus_high = 1 if get_section_score("campus") >= 70 else 0
     return (love_high, grade_high, campus_high)
 
-def rotating_message_box():
+def rotating_message_box(section_title):
     components.html(
         """
         <div id="rotating-box" style="
