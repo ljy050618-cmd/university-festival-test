@@ -567,7 +567,7 @@ def get_result_key():
 
 def rotating_message_box(section_title):
     components.html(
-        """
+        f"""
         <div id="rotating-box" style="
             width: 100%;
             padding: 18px 20px;
@@ -587,7 +587,7 @@ def rotating_message_box(section_title):
         </div>
 
         <script>
-        const sectionTitle= "{section_title}";
+        const sectionTitle= "{section_title!r}";
 
         const messages = [
             sectionTitle + "항목 검사중",
@@ -606,12 +606,12 @@ def rotating_message_box(section_title):
         function updateMessage() {
             msgEl.textContent = messages[msgIndex];
             msgIndex = (msgIndex + 1) % messages.length;
-        }
+        }}
 
-        function updateDots() {
+        function updateDots() {{
             dotCount = (dotCount + 1) % 4;
             dotsEl.textContent = ".".repeat(dotCount);
-        }
+        }}
 
         updateMessage();
         updateDots();
@@ -770,7 +770,7 @@ else:
         <div class="result-card">
             <div class="result-top">
                 <div class="meta" style="color:#fff7fb; font-weight:700;">최종 진단 결과</div>
-                <div class="title-xl">{resuult["title"]}</div>
+                <div class="title-xl">{result["title"]}</div>
                 <div class="body-text" style="color:white; margin-top:10px;">{result["subtitle"]}</div>
             </div>
         </div>
