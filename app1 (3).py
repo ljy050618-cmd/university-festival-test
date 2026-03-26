@@ -109,7 +109,7 @@ st.markdown("""
 }
 
 .title-lg {
-    font-size: clamp(18px, 4.5vw, 24px);
+    font-size: 16px
     font-weight: 900;
     line-height: 1.35;
     color: #241f24;
@@ -128,7 +128,7 @@ st.markdown("""
 }
 .page-text {
     color: #5b555d;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.7;
     margin-top: 14px;
 }
