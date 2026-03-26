@@ -125,13 +125,13 @@ st.markdown("""
     line-height: 1.7;
     margin-top: 14px;
     text-align: center;
-
+}
 .page-text {
     color: #5b555d;
     font-size: 13px;
     line-height: 1.7;
     margin-top: 14px;
-
+}
 
 .body-text {
     color: #5b555d;
