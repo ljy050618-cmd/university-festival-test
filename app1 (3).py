@@ -208,24 +208,17 @@ st.markdown("""
     font-weight: 700;
 }
 
-div[data-testid="stProgressBar"] > div > div {
-    background-color: #ff6fa9;
+.nav-buttons div[data-testid="stHorizontalBlock"]{
+    flex-wrap: nowrap !important;
 }
 
-div[data-testid="stHorizontalBlock"] {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 10px;
+.nav-buttons div[data-testid="column"]{
+    flex: 1 1 0px !important;
 }
 
-div[data-testid="column"] {
-    flex: 1 1 0 !important;
+.nav-buttons button {
+    min-height: 48px;
 }
-
-div[data-testid="stHorizontalBlock"] button {
-    min-height: 50px;
-}
-
 
 hr {
     border: none;
@@ -793,22 +786,22 @@ elif st.session_state.page_index in [1, 2, 3]:
 
     render_rotating_message_box(section["title"])
 
-    st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="nav-buttons">
+    """, unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
-
+    
     with col1:
+        prev_clicked = False
         if st.session_state.page_index > 1:
-            if st.button("이전 페이지", use_container_width=True):
-                go_to_page(st.session_state.page_index - 1)
-
+            prev_clicked = st.button("이전 페이지")
+    
     with col2:
         next_label = "결과 보기" if st.session_state.page_index == 3 else "다음 페이지"
-        if st.button(next_label, disabled=not all_answered(section_key), use_container_width=True):
-            if st.session_state.page_index < 3:
-                go_to_page(st.session_state.page_index + 1)
-            else:
-                go_to_page(4)
+        next_clicked = st.button(next_label, disabled=not all_answered(section_key))
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # =========================================================
 # 5페이지 결과 화면
