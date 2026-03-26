@@ -109,7 +109,7 @@ st.markdown("""
 }
 
 .title-lg {
-    font-size: 17px
+    font-size: 17px;
     font-weight: 1300;
     line-height: 1.35;
     color: #241f24;
