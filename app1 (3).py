@@ -796,7 +796,7 @@ elif st.session_state.page_index in [1, 2, 3]:
 
         st.markdown("</div>", unsafe_allow_html=True)
 
-    rotating_message_box(section["title"])
+    reder_rotating_message_box(section["title"])
 
     col1, col2 = st.columns(2)
 
