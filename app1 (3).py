@@ -205,45 +205,6 @@ hr {
     border-top: 1px solid #f1e3ea;
     margin: 14px 0 18px 0;
 }
-
-.dots-loading {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 10px;
-}
-
-.dots-loading span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ff5ea2;
-    display: inline-block;
-    animation: dotBounce 1.4s infinite ease-in-out both;
-}
-
-.dots-loading span:nth-child(1) {
-    animation-delay: -0.32s;
-}
-
-.dots-loading span:nth-child(2) {
-    animation-delay: -0.16s;
-}
-
-.dots-loading span:nth-child(3) {
-    animation-delay: 0s;
-}
-
-@keyframes dotBounce {
-    0%, 80%, 100% {
-        transform: scale(0.6);
-        opacity: 0.35;
-    }
-    40% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
 </style>
 """, unsafe_allow_html=True)
 
@@ -567,142 +528,169 @@ def get_result_key():
     grade_high = 1 if get_section_score("grade") >= 70 else 0
     campus_high = 1 if get_section_score("campus") >= 70 else 0
     return (love_high, grade_high, campus_high)
+import json
+import streamlit.components.v1 as components
 
-def rotating_message_box(section_title):
-    section_title_js = json.dumps(section_title, ensure_ascii=False)
+def render_rotating_message_box(section_title: str):
+    messages = [
+        f"{section_title}에 알맞은 처방을 고민 중이에요...",
+        "당신에게 어떤 고민이 있죠?",
+        "오늘 잘 찾아오셨어요.",
+        "답변을 바탕으로 상태를 정리하고 있어요...",
+        "조금만 더 보면 당신의 유형이 보여요.",
+        "지금 당신에게 맞는 결과를 고민 중이에요...",
+    ]
+    messages_js = json.dumps(messages, ensure_ascii=False)
 
     html = """
-    <div class="toss-loading-wrap">
-        <div class="toss-dots">
-            <span class="dot dot1"></span>
-            <span class="dot dot2"></span>
-            <span class="dot dot3"></span>
-        </div>
-        <div class="toss-message">
-            <span id="msg"></span>
+    <div class="loading-box">
+        <div class="loading-title">문진 분석 중</div>
+        <div class="loading-text" id="loading-message"></div>
+        <div class="loading-sub">잠시만요 기다려주세요</div>
+        <div class="dots-loading">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 
     <style>
-    .toss-loading-wrap {
+    .loading-box {
         width: 100%;
-        padding: 22px 20px;
-        border-radius: 20px;
+        padding: 26px 22px;
+        border-radius: 24px;
         background: linear-gradient(180deg, #fff6fa 0%, #fff1f7 100%);
+        border: 1px solid rgba(244, 182, 210, 0.45);
+        box-shadow: 0 8px 24px rgba(240, 173, 204, 0.12);
+        text-align: center;
         box-sizing: border-box;
-        min-height: 110px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-        border: 1px solid rgba(255, 182, 212, 0.35);
+        margin: 10px 0 18px 0;
     }
 
-    .toss-dots {
+    .loading-title {
+        font-size: clamp(16px, 3.8vw, 20px);
+        font-weight: 800;
+        color: #a9577c;
+        margin-bottom: 10px;
+        letter-spacing: -0.02em;
+    }
+
+    .loading-text {
+        font-size: clamp(17px, 4.5vw, 22px);
+        font-weight: 800;
+        line-height: 1.5;
+        color: #3d2b35;
+        word-break: keep-all;
+        min-height: 3em;
         display: flex;
         align-items: center;
         justify-content: center;
+        text-align: center;
+        padding: 0 6px;
+        transition: opacity 0.25s ease;
+        margin-bottom: 8px;
+    }
+
+    .loading-sub {
+        font-size: clamp(13px, 3.2vw, 15px);
+        color: #8a6f7d;
+        margin-bottom: 16px;
+    }
+
+    .dots-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap: 10px;
-        height: 20px;
+        height: 18px;
     }
 
-    .dot {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: #f7a8c9;
-        opacity: 0.35;
+    .dots-loading span {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #f3a8c8;
+        opacity: 0.3;
         transform: scale(0.9);
-        animation: sparkle 1.4s infinite ease-in-out;
-        box-shadow: 0 0 0 rgba(247, 168, 201, 0);
+        animation: pinkBlink 1.4s infinite ease-in-out;
+        box-shadow: 0 0 0 rgba(243, 168, 200, 0);
     }
 
-    .dot1 { animation-delay: 0s; }
-    .dot2 { animation-delay: 0.2s; }
-    .dot3 { animation-delay: 0.4s; }
+    .dots-loading span:nth-child(1) {
+        animation-delay: 0s;
+    }
 
-    @keyframes sparkle {
+    .dots-loading span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .dots-loading span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes pinkBlink {
         0% {
             opacity: 0.25;
             transform: scale(0.85);
-            box-shadow: 0 0 0 rgba(247, 168, 201, 0);
+            box-shadow: 0 0 0 rgba(243, 168, 200, 0);
         }
         30% {
             opacity: 1;
             transform: scale(1.18);
-            box-shadow: 0 0 14px rgba(247, 168, 201, 0.45);
+            box-shadow: 0 0 12px rgba(243, 168, 200, 0.45);
         }
         60% {
             opacity: 0.55;
             transform: scale(0.95);
-            box-shadow: 0 0 6px rgba(247, 168, 201, 0.18);
+            box-shadow: 0 0 6px rgba(243, 168, 200, 0.2);
         }
         100% {
             opacity: 0.25;
             transform: scale(0.85);
-            box-shadow: 0 0 0 rgba(247, 168, 201, 0);
+            box-shadow: 0 0 0 rgba(243, 168, 200, 0);
         }
-    }
-
-    .toss-message {
-        color: #5c4b57;
-        font-size: 17px;
-        font-weight: 700;
-        line-height: 1.5;
-        text-align: center;
-        word-break: keep-all;
-        padding: 0 6px;
     }
 
     @media (max-width: 480px) {
-        .toss-loading-wrap {
-            min-height: 100px;
-            padding: 20px 16px;
-            border-radius: 18px;
+        .loading-box {
+            padding: 22px 16px;
+            border-radius: 20px;
         }
 
-        .toss-message {
-            font-size: 15px;
+        .dots-loading {
+            gap: 8px;
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
+        .dots-loading span {
+            width: 9px;
+            height: 9px;
         }
     }
     </style>
 
     <script>
-    const sectionTitle = __SECTION_TITLE__;
+    const messages = __MESSAGES__;
+    let currentIndex = 0;
+    const messageEl = document.getElementById("loading-message");
 
-    const messages = [
-        sectionTitle + " 항목 검사중",
-        "당신에게 알맞은 처방을 고민 중이에요",
-        "당신에게 어떤 고민이 있죠",
-        "오늘 잘 찾아오셨어요",
-        "조금만 기다리면 결과를 보여드릴게요"
-    ];
-
-    let msgIndex = 0;
-    const msgEl = document.getElementById("msg");
-
-    function updateMessage() {
-        msgEl.style.opacity = 0.25;
-
+    function showMessage(index) {
+        messageEl.style.opacity = "0.25";
         setTimeout(() => {
-            msgEl.textContent = messages[msgIndex];
-            msgIndex = (msgIndex + 1) % messages.length;
-            msgEl.style.opacity = 1;
+            messageEl.textContent = messages[index];
+            messageEl.style.opacity = "1";
         }, 180);
     }
 
-    updateMessage();
-    setInterval(updateMessage, 4000);
-    </script>
-    """.replace("__SECTION_TITLE__", section_title_js)
+    showMessage(currentIndex);
 
-    components.html(html, height=125)
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % messages.length;
+        showMessage(currentIndex);
+    }, 4000);
+    </script>
+    """.replace("__MESSAGES__", messages_js)
+
+    components.html(html, height=210)
 
 # =========================================================
 # 1페이지 표지
