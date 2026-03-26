@@ -92,7 +92,7 @@ st.markdown("""
 }
 
 .title-xl {
-    font-size: clamp(16px, 5vw, 30px);
+    font-size: clamp(16px, 5vw, 34px);
     font-weight: 900;
     line-height: 1.2;
     margin-top: 8px;
@@ -572,23 +572,106 @@ def rotating_message_box(section_title):
     section_title_js = json.dumps(section_title, ensure_ascii=False)
 
     html = """
-    <div id="rotating-box" style="
+    <div class="toss-loading-wrap">
+        <div class="toss-dots">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+            <span class="dot dot3"></span>
+        </div>
+        <div class="toss-message">
+            <span id="msg"></span>
+        </div>
+    </div>
+
+    <style>
+    .toss-loading-wrap {
         width: 100%;
-        padding: 18px 20px;
-        border-radius: 16px;
-        background: #fff4f8;
-        color: #444;
-        font-size: 18px;
-        font-weight: 600;
-        text-align: center;
+        padding: 22px 20px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #fff6fa 0%, #fff1f7 100%);
         box-sizing: border-box;
-        min-height: 72px;
+        min-height: 110px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        border: 1px solid rgba(255, 182, 212, 0.35);
+    }
+
+    .toss-dots {
         display: flex;
         align-items: center;
         justify-content: center;
-    ">
-        <span id="msg"></span><span id="dots"></span>
-    </div>
+        gap: 10px;
+        height: 20px;
+    }
+
+    .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #f7a8c9;
+        opacity: 0.35;
+        transform: scale(0.9);
+        animation: sparkle 1.4s infinite ease-in-out;
+        box-shadow: 0 0 0 rgba(247, 168, 201, 0);
+    }
+
+    .dot1 { animation-delay: 0s; }
+    .dot2 { animation-delay: 0.2s; }
+    .dot3 { animation-delay: 0.4s; }
+
+    @keyframes sparkle {
+        0% {
+            opacity: 0.25;
+            transform: scale(0.85);
+            box-shadow: 0 0 0 rgba(247, 168, 201, 0);
+        }
+        30% {
+            opacity: 1;
+            transform: scale(1.18);
+            box-shadow: 0 0 14px rgba(247, 168, 201, 0.45);
+        }
+        60% {
+            opacity: 0.55;
+            transform: scale(0.95);
+            box-shadow: 0 0 6px rgba(247, 168, 201, 0.18);
+        }
+        100% {
+            opacity: 0.25;
+            transform: scale(0.85);
+            box-shadow: 0 0 0 rgba(247, 168, 201, 0);
+        }
+    }
+
+    .toss-message {
+        color: #5c4b57;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.5;
+        text-align: center;
+        word-break: keep-all;
+        padding: 0 6px;
+    }
+
+    @media (max-width: 480px) {
+        .toss-loading-wrap {
+            min-height: 100px;
+            padding: 20px 16px;
+            border-radius: 18px;
+        }
+
+        .toss-message {
+            font-size: 15px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+        }
+    }
+    </style>
 
     <script>
     const sectionTitle = __SECTION_TITLE__;
@@ -602,30 +685,24 @@ def rotating_message_box(section_title):
     ];
 
     let msgIndex = 0;
-    let dotCount = 0;
-
     const msgEl = document.getElementById("msg");
-    const dotsEl = document.getElementById("dots");
 
     function updateMessage() {
-        msgEl.textContent = messages[msgIndex];
-        msgIndex = (msgIndex + 1) % messages.length;
-    }
+        msgEl.style.opacity = 0.25;
 
-    function updateDots() {
-        dotCount = (dotCount + 1) % 4;
-        dotsEl.textContent = ".".repeat(dotCount);
+        setTimeout(() => {
+            msgEl.textContent = messages[msgIndex];
+            msgIndex = (msgIndex + 1) % messages.length;
+            msgEl.style.opacity = 1;
+        }, 180);
     }
 
     updateMessage();
-    updateDots();
-
-    setInterval(updateMessage, 5000);
-    setInterval(updateDots, 500);
+    setInterval(updateMessage, 4000);
     </script>
     """.replace("__SECTION_TITLE__", section_title_js)
 
-    components.html(html, height=100)
+    components.html(html, height=125)
 
 # =========================================================
 # 1페이지 표지
