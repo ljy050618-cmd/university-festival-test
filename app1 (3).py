@@ -208,18 +208,6 @@ st.markdown("""
     font-weight: 700;
 }
 
-.nav-buttons div[data-testid="stHorizontalBlock"]{
-    flex-wrap: nowrap !important;
-}
-
-.nav-buttons div[data-testid="column"]{
-    flex: 1 1 0px !important;
-}
-
-.nav-buttons button {
-    min-height: 48px;
-}
-
 hr {
     border: none;
     border-top: 1px solid #f1e3ea;
@@ -792,14 +780,18 @@ elif st.session_state.page_index in [1, 2, 3]:
 
     col1, col2 = st.columns(2)
     
-    with col1:
-        prev_clicked = False
-        if st.session_state.page_index > 1:
-            prev_clicked = st.button("이전 페이지")
-    
-    with col2:
-        next_label = "결과 보기" if st.session_state.page_index == 3 else "다음 페이지"
-        next_clicked = st.button(next_label, disabled=not all_answered(section_key))
+with col1:
+    if st.session_state.page_index > 1:
+        if st.button("이전 페이지"):
+            go_to_page(st.session_state.page_index - 1)
+
+with col2:
+    next_label = "결과 보기" if st.session_state.page_index == 3 else "다음 페이지"
+    if st.button(next_label, disabled=not all_answered(section_key)):
+        if st.session_state.page_index < 3:
+            go_to_page(st.session_state.page_index + 1)
+        else:
+            go_to_page(4)
     
     st.markdown("</div>", unsafe_allow_html=True)
 
