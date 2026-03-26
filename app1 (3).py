@@ -121,21 +121,21 @@ st.markdown("""
 
 .cover-text {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.7;
     margin-top: 14px;
     text-align: center;
 
 .page-text {
     color: #5b555d;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.7;
     margin-top: 14px;
 
 
 .body-text {
     color: #5b555d;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.75;
 }
 
@@ -686,7 +686,7 @@ if st.session_state.page_index == 0:
 
     st.markdown("""
     <div class="info-card">
-        <div class="section-title">진행 안내</div>
+        <div class="section-title"><진행 안내></div>
         <div class="page-text">
             총 3개 영역, 각 영역당 5문항입니다.<br>
             각 페이지에서 5개 문항에 모두 답하면 다음으로 넘어갈 수 있어요.
