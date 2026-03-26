@@ -133,7 +133,7 @@ st.markdown("""
 
 .body-text {
     color: #5b555d;
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.75;
 }
 
