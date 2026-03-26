@@ -511,6 +511,14 @@ def go_to_page(idx: int):
     st.session_state.page_index = idx
     st.rerun()
 
+    st.markdown("""
+    <script>
+    window.scrollTo(0, 0);
+    </script>
+     """, unsafe_allow_html=True)
+
+    st.rerun()
+    
 def get_section_score(section_key: str) -> int:
     values = st.session_state.responses[section_key]
     return sum(v for v in values if v is not None)
@@ -672,6 +680,7 @@ def render_rotating_message_box(section_title: str):
 # 1페이지 표지
 # =========================================================
 if st.session_state.page_index == 0:
+    
     st.markdown("""
     <div class="hero-card">
         <div class="meta" style="color:#fff6fb; font-weight:700;">무면허 진료소</div>
