@@ -595,9 +595,33 @@ def render_rotating_message_box(section_title: str):
         opacity: 0.25;
         transform: scale(0.9);
         display: inline-block;
-        transition: all 0.2s ease;
+        animation: dotBounce 1.2s infinite ease-in-out;
+    }
+
+    .dots-loading span:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .dots-loading span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .dots-loading span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes dotBounce {
+        0%, 80%, 100% {
+            opacity: 0.22;
+            transform: translateY(0) scale(0.9);
+        }
+        40% {
+            opacity: 1;
+            transform: translateY(-3px) scale(1.18);
+        }
     }
     </style>
+
     <div class="loading-box">
         <div class="loading-title">문진 분석 중</div>
         <div class="loading-text" id="loading-message"></div>
@@ -608,6 +632,7 @@ def render_rotating_message_box(section_title: str):
             <span></span>
         </div>
     </div>
+   
  <script>
     const messages = __MESSAGES__;
     let currentIndex = 0;
@@ -620,27 +645,6 @@ def render_rotating_message_box(section_title: str):
             messageEl.textContent = messages[index];
             messageEl.style.opacity = "1";
         }, 150);
-    }
-
-    function animateDots() {
-        dots.forEach((dot, i) => {
-            dot.style.opacity = "0.25";
-            dot.style.transform = "scale(0.9)";
-        });
-
-        let active = 0;
-        setInterval(() => {
-            dots.forEach((dot, i) => {
-                if (i === active) {
-                    dot.style.opacity = "1";
-                    dot.style.transform = "scale(1.15)";
-                } else {
-                    dot.style.opacity = "0.25";
-                    dot.style.transform = "scale(0.9)";
-                }
-            });
-            active = (active + 1) % dots.length;
-        }, 300);
     }
 
     showMessage(currentIndex);
