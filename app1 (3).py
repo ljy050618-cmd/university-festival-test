@@ -673,8 +673,8 @@ def render_rotating_message_box(section_title: str):
 if st.session_state.page_index == 0:
     st.markdown("""
     <div class="hero-card">
-        <div class="meta" style="color:#fff6fb; font-weight:700;">대학 축제 문진표 테스트</div>
-        <div class="title-xl">축제 건강검진 테스트</div>
+        <div class="meta" style="color:#fff6fb; font-weight:700;">무면허 진료소</div>
+        <div class="title-xl">종합 건강 문진표</div>
         <div class="body-text" style="color:white; margin-top:12px;">
             연애, 성적, 대학생활 상태를 가볍게 체크하고<br>
             마지막 결과 유형에 따라 간식 처방을 받아보세요.
