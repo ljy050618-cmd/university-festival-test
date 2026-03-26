@@ -603,7 +603,7 @@ def render_rotating_message_box(section_title: str):
     }
 
     .dots-loading span:nth-child(2) {
-        animation-delay: 0.4s;
+        animation-delay: 0.3s;
     }
 
     .dots-loading span:nth-child(3) {
