@@ -553,139 +553,50 @@ def render_rotating_message_box(section_title: str):
             <span></span>
         </div>
     </div>
-
-    <style>
-   .loading-wrap {
-        width: 100%;
-        box-sizing: border-box;
-        margin: 10px 0 12px 0;
-        padding: 18px 16px;
-        text-align: left;
-
-        background: #fff9fc;
-        border-radius: 14px;
-        border: 1px solid #f5d3e2;
-
-        box-shadow: 0 2px 6px rgba(245, 180, 210, 0.08);
-    }
-
-    .loading-title {
-        font-size: clamp(12px, 2.8vw, 14px);
-        font-weight: 700;
-        color: #c97c97;
-        margin-bottom: 8px;
-        letter-spacing: -0.01em;
-        text-align: left;
-    }
-
-    .loading-text {
-        font-size: clamp(15px, 4vw, 18px);
-        font-weight: 800;
-        line-height: 1.45;
-        color: #2d2d2d;
-        word-break: keep-all;
-        text-align: left;
-        min-height: 2.9em;
-        transition: opacity 0.2s ease;
-        margin-bottom: 16px;
-    }
-
-    .loading-sub {
-        font-size: clamp(12px, 3vw, 14px);
-        color: #b6b6b6;
-        margin-bottom: 10px;
-        text-align: left;
-    }
-
-    .dots-loading {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 5px;
-        height: 10px;
-    }
-
-    .dots-loading span {
-        width: 5px;
-        height: 5px;
-        border-radius: 999px;
-        background: #f5b3cd;
-        opacity: 0.25;
-        transform: scale(0.9);
-        animation: pinkBlink 1.2s infinite ease-in-out;
-    }
-
-    .dots-loading span:nth-child(1) {
-        animation-delay: 0s;
-    }
-
-    .dots-loading span:nth-child(2) {
-        animation-delay: 0.18s;
-    }
-
-    .dots-loading span:nth-child(3) {
-        animation-delay: 0.36s;
-    }
-
-    @keyframes pinkBlink {
-        0% {
-            opacity: 0.2;
-            transform: scale(0.85);
-        }
-        30% {
-            opacity: 1;
-            transform: scale(1.15);
-        }
-        60% {
-            opacity: 0.45;
-            transform: scale(0.95);
-        }
-        100% {
-            opacity: 0.2;
-            transform: scale(0.85);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .loading-title {
-            font-size: 12px;
-        }
-
-        .loading-text {
-            font-size: 15px;
-        }
-
-        .loading-sub {
-            font-size: 12px;
-        }
-
-        .dots-loading span {
-            width: 4px;
-            height: 4px;
-        }
-    }
-    </style>
-
-    <script>
+ <script>
     const messages = __MESSAGES__;
     let currentIndex = 0;
     const messageEl = document.getElementById("loading-message");
+    const dots = document.querySelectorAll(".dot-wave span");
 
     function showMessage(index) {
         messageEl.style.opacity = "0.25";
         setTimeout(() => {
             messageEl.textContent = messages[index];
             messageEl.style.opacity = "1";
-        }, 140);
+        }, 150);
+    }
+
+    function animateDots() {
+        dots.forEach((dot, i) => {
+            dot.style.opacity = "0.25";
+            dot.style.transform = "scale(0.9)";
+        });
+
+        let active = 0;
+        setInterval(() => {
+            dots.forEach((dot, i) => {
+                if (i === active) {
+                    dot.style.opacity = "1";
+                    dot.style.transform = "scale(1.15)";
+                } else {
+                    dot.style.opacity = "0.25";
+                    dot.style.transform = "scale(0.9)";
+                }
+            });
+            active = (active + 1) % dots.length;
+        }, 300);
     }
 
     showMessage(currentIndex);
+    animateDots();
 
     setInterval(() => {
         currentIndex = (currentIndex + 1) % messages.length;
         showMessage(currentIndex);
     }, 4000);
     </script>
+
     """.replace("__MESSAGES__", messages_js)
 
     components.html(html, height=150)
