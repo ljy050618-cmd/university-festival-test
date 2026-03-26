@@ -778,7 +778,7 @@ elif st.session_state.page_index in [1, 2, 3]:
 
     render_rotating_message_box(section["title"])
 
-    col1, col2 = st.columns([1,1], gap="medium")
+    col1, col2 = st.columns([1,1], gap="small")
 
     with col1:
         if st.session_state.page_index > 1:
@@ -889,7 +889,7 @@ else:
         unsafe_allow_html=True
     )
 
-    st.markdown("<div style='height:60px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([1,2,1])
     with col2:
