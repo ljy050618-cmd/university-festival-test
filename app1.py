@@ -102,6 +102,22 @@ st.markdown("""
     font-weight: 900;
     line-height: 1.35;
     color: #241f24;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+@media (max-width: 768px) {
+    .title-xl {
+        font-size: 24px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-xl {
+        font-size: 20px !important;
+    }
 }
 
 .body-text {
@@ -753,7 +769,7 @@ else:
         <div class="result-card">
             <div class="result-top">
                 <div class="meta" style="color:#fff7fb; font-weight:700;">최종 진단 결과</div>
-                <div class="title-xl" style="font-size:32px;">{result["title"]}</div>
+                <div class="title-xl">{section["title"]}</div>
                 <div class="body-text" style="color:white; margin-top:10px;">{result["subtitle"]}</div>
             </div>
         </div>
