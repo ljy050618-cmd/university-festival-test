@@ -119,6 +119,20 @@ st.markdown("""
 
 }
 
+.cover-text {
+    color: white;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 14px;
+    text-align: center;
+
+.page-text {
+    color: #5b555d;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 14px;
+
+
 .body-text {
     color: #5b555d;
     font-size: 15px;
@@ -663,7 +677,7 @@ if st.session_state.page_index == 0:
     <div class="hero-card">
         <div class="meta" style="color:#fff6fb; font-weight:700;">무면허 진료소</div>
         <div class="title-xl">종합 건강 문진표</div>
-        <div class="body-text" style="color:white; margin-top:12px;">
+        <div class="cover-text" style="color:white; margin-top:12px;">
             연애, 성적, 대학생활 상태를 가볍게 체크하고<br>
             마지막 결과 유형에 따라 간식 처방을 받아보세요.
         </div>
@@ -673,7 +687,7 @@ if st.session_state.page_index == 0:
     st.markdown("""
     <div class="info-card">
         <div class="section-title">진행 안내</div>
-        <div class="body-text">
+        <div class="page-text">
             총 3개 영역, 각 영역당 5문항입니다.<br>
             각 페이지에서 5개 문항에 모두 답하면 다음으로 넘어갈 수 있어요.
         </div>
