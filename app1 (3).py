@@ -700,7 +700,7 @@ if st.session_state.page_index == 0:
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("테스트 시작"):
+    if st.button("테스트 시작", use_container_width=True):
         go_to_page(1)
 
 # =========================================================
