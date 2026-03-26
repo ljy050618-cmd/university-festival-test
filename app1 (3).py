@@ -92,7 +92,7 @@ st.markdown("""
 }
 
 .title-xl {
-    font-size: clamp(16px, 5vw, 34px);
+    font-size: clamp(16px, 5vw, 30px);
     font-weight: 900;
     line-height: 1.2;
     margin-top: 8px;
@@ -102,7 +102,7 @@ st.markdown("""
 }
 
 .title-lg {
-    font-size: 26px;
+    font-size: clamp(18px, 4.5vw, 24px);
     font-weight: 900;
     line-height: 1.35;
     color: #241f24;
