@@ -537,7 +537,7 @@ def render_rotating_message_box(section_title: str):
     ]
     messages_js = json.dumps(messages, ensure_ascii=False)
 
-    html = """
+    html = f"""
      <style>
     .loading-box {
         background: linear-gradient(135deg, #fff8fc 0%, #fff3f8 100%);
@@ -651,7 +651,7 @@ def render_rotating_message_box(section_title: str):
     }, 4000);
     </script>
 
-    """.replace("__MESSAGES__", messages_js)
+    """
 
     components.html(html, height=165)
 
