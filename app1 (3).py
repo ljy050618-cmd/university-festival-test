@@ -558,10 +558,13 @@ def render_rotating_message_box(section_title: str):
    .loading-wrap {
         width: 100%;
         box-sizing: border-box;
-        margin: 8px 0 10px 0;
-        padding: 0;
+        margin: 10px 0 12px 0;
+        padding: 16px 14px;
         text-align: left;
-        background: transparent;
+
+        background: linear-gradient(180deg,#fff8fb 0%,#fff5f9 100%);
+        border-radius: 14px;
+        border: 1px solid rgba(244,182,210,0.18);
     }
 
     .loading-title {
@@ -604,7 +607,7 @@ def render_rotating_message_box(section_title: str):
         width: 5px;
         height: 5px;
         border-radius: 999px;
-        background: #f4a9c4;
+        background: #f5b3cd;
         opacity: 0.25;
         transform: scale(0.9);
         animation: pinkBlink 1.2s infinite ease-in-out;
