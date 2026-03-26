@@ -739,7 +739,7 @@ elif st.session_state.page_index in [1, 2, 3]:
         <div class="hero-card">
             <div class="meta" style="color:#fff6fb; font-weight:700;">{st.session_state.page_index} 페이지</div>
             <div class="title-xl">{section["title"]}</div>
-            <div class="body-text" style="color:white; margin-top:10px;">
+            <div class="body-text" style="color:white; margin-top:10px; text-align:center;"">
                 {section["description"]}
             </div>
         </div>
