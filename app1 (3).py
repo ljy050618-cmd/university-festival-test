@@ -99,7 +99,7 @@ st.markdown("""
 }
 
 .title-xl {
-    font-size: clamp(25px, 6vw, 34px);
+    font-size: clamp(25px, 6vw, 34px) !important;
     font-weight: 900;
     line-height: 1.2;
     margin-top: 8px;
