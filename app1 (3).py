@@ -635,6 +635,7 @@ def render_rotating_message_box(section_title: str):
     const dots = document.querySelectorAll(".dot-wave span");
 
     function showMessage(index) {
+        if (!messageEl) return;
         messageEl.style.opacity = "0.25";
         setTimeout(() => {
             messageEl.textContent = messages[index];
@@ -643,16 +644,15 @@ def render_rotating_message_box(section_title: str):
     }
 
     showMessage(currentIndex);
-    animateDots();
-
+    
     setInterval(() => {
         currentIndex = (currentIndex + 1) % messages.length;
         showMessage(currentIndex);
-    }, 4000);
+    }, 2200);
     </script>
 
     """
-
+    html = html.replace("__MESSAGES__", messages_js)
     components.html(html, height=165)
 
 # =========================================================
