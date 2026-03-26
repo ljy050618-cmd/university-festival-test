@@ -793,7 +793,6 @@ with col2:
         else:
             go_to_page(4)
     
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # =========================================================
 # 5페이지 결과 화면
