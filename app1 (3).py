@@ -778,7 +778,7 @@ elif st.session_state.page_index in [1, 2, 3]:
 
     render_rotating_message_box(section["title"])
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1,1], gap="medium")
 
     with col1:
         if st.session_state.page_index > 1:
@@ -889,8 +889,10 @@ else:
         unsafe_allow_html=True
     )
 
-    col1, col2 = st.columns(2)
-    with col1:
+    st.markdown("<div style='height:60px'></div>", unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns([1,2,1])
+    with col2:
         if st.button("다시 검사하기"):
             st.session_state.page_index = 0
             st.session_state.responses = {
