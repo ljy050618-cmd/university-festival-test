@@ -683,7 +683,7 @@ if st.session_state.page_index == 0:
             각 페이지에서 5개 문항에 모두 답하면 다음으로 넘어갈 수 있어요.
         </div>
         <hr>
-        <div>
+        <div class="badge-row">
             <span class="badge">연애 5문항</span>
             <span class="badge">성적 5문항</span>
             <span class="badge">대학생활 5문항</span>
