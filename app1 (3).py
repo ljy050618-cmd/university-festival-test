@@ -543,6 +543,61 @@ def render_rotating_message_box(section_title: str):
     messages_js = json.dumps(messages, ensure_ascii=False)
 
     html = """
+     <style>
+    .loading-box {
+        background: linear-gradient(135deg, #fff8fc 0%, #fff3f8 100%);
+        border: 1px solid #f2c8da;
+        border-radius: 18px;
+        padding: 16px 18px;
+        margin-top: 14px;
+        margin-bottom: 14px;
+        box-shadow: 0 8px 20px rgba(255, 94, 162, 0.08);
+        text-align: left;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .loading-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: #c22574;
+        margin-bottom: 8px;
+    }
+
+    .loading-text {
+        font-size: 15px;
+        font-weight: 700;
+        color: #4d434b;
+        line-height: 1.6;
+        min-height: 44px;
+        transition: opacity 0.2s ease;
+    }
+
+    .loading-sub {
+        font-size: 12px;
+        color: #8a7d86;
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .dots-loading {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .dots-loading span {
+        width: 5px;
+        height: 5px;
+        border-radius: 999px;
+        background: #ff5ea2;
+        opacity: 0.25;
+        transform: scale(0.9);
+        display: inline-block;
+        transition: all 0.2s ease;
+    }
+    </style>
     <div class="loading-box">
         <div class="loading-title">문진 분석 중</div>
         <div class="loading-text" id="loading-message"></div>
@@ -599,7 +654,7 @@ def render_rotating_message_box(section_title: str):
 
     """.replace("__MESSAGES__", messages_js)
 
-    components.html(html, height=150)
+    components.html(html, height=165)
 
 # =========================================================
 # 1페이지 표지
