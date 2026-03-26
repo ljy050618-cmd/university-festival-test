@@ -99,7 +99,7 @@ st.markdown("""
 }
 
 .title-xl {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 900;
     line-height: 1.2;
     margin-top: 8px;
@@ -632,7 +632,7 @@ def render_rotating_message_box(section_title: str):
     <div class="loading-box">
         <div class="loading-title">문진 분석 중</div>
         <div class="loading-text" id="loading-message"></div>
-        <div class="loading-sub">잠시만요 기다려주세요</div>
+        <div class="loading-sub">잠시만 기다려주세요</div>
         <div class="dots-loading">
             <span></span>
             <span></span>
