@@ -119,18 +119,6 @@ st.markdown("""
 
 }
 
-@media (max-width: 768px) {
-    .title-xl {
-        font-size: 20px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .title-xl {
-        font-size: 16px !important;
-    }
-}
-
 .body-text {
     color: #5b555d;
     font-size: 16px;
