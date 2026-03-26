@@ -103,8 +103,6 @@ st.markdown("""
     line-height: 1.35;
     color: #241f24;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 
 }
 
