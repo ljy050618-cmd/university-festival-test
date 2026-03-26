@@ -648,7 +648,7 @@ def render_rotating_message_box(section_title: str):
     setInterval(() => {
         currentIndex = (currentIndex + 1) % messages.length;
         showMessage(currentIndex);
-    }, 2200);
+    }, 5000);
     </script>
 
     """
