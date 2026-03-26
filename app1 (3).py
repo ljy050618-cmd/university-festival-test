@@ -509,8 +509,7 @@ if "responses" not in st.session_state:
 # =========================================================
 def go_to_page(idx: int):
     st.session_state.page_index = idx
-    st.rerun()
-
+   
     st.markdown("""
     <script>
     window.scrollTo(0, 0);
