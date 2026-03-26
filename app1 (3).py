@@ -774,25 +774,31 @@ elif st.session_state.page_index in [1, 2, 3]:
 
     render_rotating_message_box(section["title"])
 
-    st.markdown("""
-    <div class="nav-buttons">
-    """, unsafe_allow_html=True)
+    st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
+    nav_col1, nav_col2 = st.columns([1, 1], gap="small")
     
-    with col1:
+    with nav_col1:
+        prev_clicked = False
         if st.session_state.page_index > 1:
-            if st.button("이전 페이지"):
-                go_to_page(st.session_state.page_index - 1)
+            prev_clicked = st.button("이전 페이지", use_container_width=True)
     
-    with col2:
+    with nav_col2:
         next_label = "결과 보기" if st.session_state.page_index == 3 else "다음 페이지"
-        if st.button(next_label, disabled=not all_answered(section_key)):
-            if st.session_state.page_index < 3:
-                go_to_page(st.session_state.page_index + 1)
-            else:
-                go_to_page(4)
+        next_clicked = st.button(
+            next_label,
+            disabled=not all_answered(section_key),
+            use_container_width=True
+        )
     
+    if prev_clicked:
+        go_to_page(st.session_state.page_index - 1)
+    
+    if next_clicked:
+        if st.session_state.page_index < 3:
+            go_to_page(st.session_state.page_index + 1)
+        else:
+            go_to_page(4)
 
 # =========================================================
 # 5페이지 결과 화면
