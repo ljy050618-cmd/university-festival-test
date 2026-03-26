@@ -96,6 +96,8 @@ st.markdown("""
     line-height: 1.2;
     margin-top: 8px;
     text-align: center;
+    white-space: normal;
+    word-break: keep-all;
 }
 
 .title-lg {
@@ -674,7 +676,7 @@ elif st.session_state.page_index in [1, 2, 3]:
         f"""
         <div class="hero-card">
             <div class="meta" style="color:#fff6fb; font-weight:700;">{st.session_state.page_index + 1} 페이지</div>
-            <div class="title-xl" style="font-size:30px;">{section["title"]}</div>
+            <div class="title-xl">{section["title"]}</div>
             <div class="body-text" style="color:white; margin-top:10px;">
                 {section["description"]}
             </div>
