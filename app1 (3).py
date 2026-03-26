@@ -99,7 +99,7 @@ st.markdown("""
 }
 
 .title-xl {
-    font-size: clamp(16px, 5vw, 34px);
+    font-size: clamp(20px, 5vw, 34px);
     font-weight: 900;
     line-height: 1.2;
     margin-top: 8px;
@@ -133,7 +133,7 @@ st.markdown("""
 
 .body-text {
     color: #5b555d;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.75;
 }
 
