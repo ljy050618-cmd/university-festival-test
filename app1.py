@@ -108,13 +108,13 @@ st.markdown("""
 
 @media (max-width: 768px) {
     .title-xl {
-        font-size: 24px !important;
+        font-size: 20px !important;
     }
 }
 
 @media (max-width: 480px) {
     .title-xl {
-        font-size: 20px !important;
+        font-size: 16px !important;
     }
 }
 
