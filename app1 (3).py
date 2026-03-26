@@ -507,16 +507,25 @@ if "responses" not in st.session_state:
 # =========================================================
 # 유틸 함수
 # =========================================================
+
+if "scroll_to_top" not in st.session_state:
+    st.session_state.scroll_to_top = False
+
 def go_to_page(idx: int):
     st.session_state.page_index = idx
-   
-    st.markdown("""
-    <script>
-    window.scrollTo(0, 0);
-    </script>
-     """, unsafe_allow_html=True)
-
+    st.session_state.scroll_to_top = True
     st.rerun()
+
+if st.session_state.scroll_to_top:
+    components.html(
+        """
+        <script>
+            window.parent.scrollTo(0, 0);
+        </script>
+        """,
+        height=0,
+    )
+    st.session_state.scroll_to_top = False
     
 def get_section_score(section_key: str) -> int:
     values = st.session_state.responses[section_key]
