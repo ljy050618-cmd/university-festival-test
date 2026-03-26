@@ -212,6 +212,21 @@ div[data-testid="stProgressBar"] > div > div {
     background-color: #ff6fa9;
 }
 
+div[data-testid="stHorizontalBlock"] {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px;
+}
+
+div[data-testid="column"] {
+    flex: 1 1 0 !important;
+}
+
+div[data-testid="stHorizontalBlock"] button {
+    min-height: 50px;
+}
+
+
 hr {
     border: none;
     border-top: 1px solid #f1e3ea;
