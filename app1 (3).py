@@ -121,7 +121,7 @@ st.markdown("""
 
 .body-text {
     color: #5b555d;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.75;
 }
 
@@ -707,7 +707,7 @@ elif st.session_state.page_index in [1, 2, 3]:
     st.markdown(
         f"""
         <div class="hero-card">
-            <div class="meta" style="color:#fff6fb; font-weight:700;">{st.session_state.page_index + 1} 페이지</div>
+            <div class="meta" style="color:#fff6fb; font-weight:700;">{st.session_state.page_index} 페이지</div>
             <div class="title-xl">{section["title"]}</div>
             <div class="body-text" style="color:white; margin-top:10px;">
                 {section["description"]}
