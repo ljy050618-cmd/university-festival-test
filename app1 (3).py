@@ -67,16 +67,23 @@ st.markdown("""
 }
 
 .badge {
-    display: inline-block;
-    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
     border-radius: 999px;
     background: #fff1f7;
     color: #d63384;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    margin-right: 6px;
-    margin-bottom: 8px;
     border: 1px solid #ffd8e8;
+    white-space: nowrap;
+}
+.badge-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+    width:100%;
 }
 
 .keyword {
