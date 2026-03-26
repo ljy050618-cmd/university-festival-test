@@ -785,7 +785,7 @@ elif st.session_state.page_index in [1, 2, 3]:
     with nav_col1:
         prev_clicked = False
         if st.session_state.page_index > 1:
-            if st.button("이전 페이지",use_container_width=True)):
+            if st.button("이전 페이지",use_container_width=True):
                 go_to_page(st.session_state.page_index - 1)
 
     with nav_col2:
