@@ -555,65 +555,59 @@ def render_rotating_message_box(section_title: str):
     </div>
 
     <style>
-    .loading-box {
+   .loading-wrap {
         width: 100%;
-        padding: 26px 22px;
-        border-radius: 24px;
-        background: linear-gradient(180deg, #fff6fa 0%, #fff1f7 100%);
-        border: 1px solid rgba(244, 182, 210, 0.45);
-        box-shadow: 0 8px 24px rgba(240, 173, 204, 0.12);
-        text-align: center;
         box-sizing: border-box;
-        margin: 10px 0 18px 0;
+        margin: 8px 0 10px 0;
+        padding: 0;
+        text-align: left;
+        background: transparent;
     }
 
     .loading-title {
-        font-size: clamp(16px, 3.8vw, 20px);
-        font-weight: 800;
-        color: #a9577c;
-        margin-bottom: 10px;
-        letter-spacing: -0.02em;
+        font-size: clamp(12px, 2.8vw, 14px);
+        font-weight: 700;
+        color: #c97c97;
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+        text-align: left;
     }
 
     .loading-text {
-        font-size: clamp(17px, 4.5vw, 22px);
+        font-size: clamp(15px, 4vw, 18px);
         font-weight: 800;
-        line-height: 1.5;
-        color: #3d2b35;
+        line-height: 1.45;
+        color: #2d2d2d;
         word-break: keep-all;
-        min-height: 3em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 0 6px;
-        transition: opacity 0.25s ease;
-        margin-bottom: 8px;
+        text-align: left;
+        min-height: 2.9em;
+        transition: opacity 0.2s ease;
+        margin-bottom: 16px;
     }
 
     .loading-sub {
-        font-size: clamp(13px, 3.2vw, 15px);
-        color: #8a6f7d;
-        margin-bottom: 16px;
+        font-size: clamp(12px, 3vw, 14px);
+        color: #b6b6b6;
+        margin-bottom: 10px;
+        text-align: left;
     }
 
     .dots-loading {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        gap: 10px;
-        height: 18px;
+        gap: 5px;
+        height: 10px;
     }
 
     .dots-loading span {
-        width: 10px;
-        height: 10px;
+        width: 5px;
+        height: 5px;
         border-radius: 999px;
-        background: #f3a8c8;
-        opacity: 0.3;
+        background: #f4a9c4;
+        opacity: 0.25;
         transform: scale(0.9);
-        animation: pinkBlink 1.4s infinite ease-in-out;
-        box-shadow: 0 0 0 rgba(243, 168, 200, 0);
+        animation: pinkBlink 1.2s infinite ease-in-out;
     }
 
     .dots-loading span:nth-child(1) {
@@ -621,49 +615,48 @@ def render_rotating_message_box(section_title: str):
     }
 
     .dots-loading span:nth-child(2) {
-        animation-delay: 0.2s;
+        animation-delay: 0.18s;
     }
 
     .dots-loading span:nth-child(3) {
-        animation-delay: 0.4s;
+        animation-delay: 0.36s;
     }
 
     @keyframes pinkBlink {
         0% {
-            opacity: 0.25;
+            opacity: 0.2;
             transform: scale(0.85);
-            box-shadow: 0 0 0 rgba(243, 168, 200, 0);
         }
         30% {
             opacity: 1;
-            transform: scale(1.18);
-            box-shadow: 0 0 12px rgba(243, 168, 200, 0.45);
+            transform: scale(1.15);
         }
         60% {
-            opacity: 0.55;
+            opacity: 0.45;
             transform: scale(0.95);
-            box-shadow: 0 0 6px rgba(243, 168, 200, 0.2);
         }
         100% {
-            opacity: 0.25;
+            opacity: 0.2;
             transform: scale(0.85);
-            box-shadow: 0 0 0 rgba(243, 168, 200, 0);
         }
     }
 
     @media (max-width: 480px) {
-        .loading-box {
-            padding: 22px 16px;
-            border-radius: 20px;
+        .loading-title {
+            font-size: 12px;
         }
 
-        .dots-loading {
-            gap: 8px;
+        .loading-text {
+            font-size: 15px;
+        }
+
+        .loading-sub {
+            font-size: 12px;
         }
 
         .dots-loading span {
-            width: 9px;
-            height: 9px;
+            width: 4px;
+            height: 4px;
         }
     }
     </style>
@@ -678,7 +671,7 @@ def render_rotating_message_box(section_title: str):
         setTimeout(() => {
             messageEl.textContent = messages[index];
             messageEl.style.opacity = "1";
-        }, 180);
+        }, 140);
     }
 
     showMessage(currentIndex);
@@ -690,7 +683,7 @@ def render_rotating_message_box(section_title: str):
     </script>
     """.replace("__MESSAGES__", messages_js)
 
-    components.html(html, height=210)
+    components.html(html, height=150)
 
 # =========================================================
 # 1페이지 표지
