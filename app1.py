@@ -91,10 +91,11 @@ st.markdown("""
 }
 
 .title-xl {
-    font-size: 34px;
+    font-size: clamp(16px, 5vw, 34px);
     font-weight: 900;
     line-height: 1.2;
     margin-top: 8px;
+    text-align: center;
 }
 
 .title-lg {
@@ -767,7 +768,7 @@ else:
         <div class="result-card">
             <div class="result-top">
                 <div class="meta" style="color:#fff7fb; font-weight:700;">최종 진단 결과</div>
-                <div class="title-xl">{section["title"]}</div>
+                <div class="title-xl">{resuult["title"]}</div>
                 <div class="body-text" style="color:white; margin-top:10px;">{result["subtitle"]}</div>
             </div>
         </div>
