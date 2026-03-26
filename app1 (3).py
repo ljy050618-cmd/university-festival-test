@@ -559,12 +559,14 @@ def render_rotating_message_box(section_title: str):
         width: 100%;
         box-sizing: border-box;
         margin: 10px 0 12px 0;
-        padding: 16px 14px;
+        padding: 18px 16px;
         text-align: left;
 
-        background: linear-gradient(180deg,#fff8fb 0%,#fff5f9 100%);
+        background: #fff9fc;
         border-radius: 14px;
-        border: 1px solid rgba(244,182,210,0.18);
+        border: 1px solid #f5d3e2;
+
+        box-shadow: 0 2px 6px rgba(245, 180, 210, 0.08);
     }
 
     .loading-title {
