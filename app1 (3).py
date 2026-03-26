@@ -780,18 +780,18 @@ elif st.session_state.page_index in [1, 2, 3]:
 
     col1, col2 = st.columns(2)
     
-with col1:
-    if st.session_state.page_index > 1:
-        if st.button("이전 페이지"):
-            go_to_page(st.session_state.page_index - 1)
-
-with col2:
-    next_label = "결과 보기" if st.session_state.page_index == 3 else "다음 페이지"
-    if st.button(next_label, disabled=not all_answered(section_key)):
-        if st.session_state.page_index < 3:
-            go_to_page(st.session_state.page_index + 1)
-        else:
-            go_to_page(4)
+    with col1:
+        if st.session_state.page_index > 1:
+            if st.button("이전 페이지"):
+                go_to_page(st.session_state.page_index - 1)
+    
+    with col2:
+        next_label = "결과 보기" if st.session_state.page_index == 3 else "다음 페이지"
+        if st.button(next_label, disabled=not all_answered(section_key)):
+            if st.session_state.page_index < 3:
+                go_to_page(st.session_state.page_index + 1)
+            else:
+                go_to_page(4)
     
 
 # =========================================================
