@@ -20,17 +20,20 @@ st.markdown("""
 <style>
 .block-container {
     max-width: 864px;
-    padding-top: 1.2rem;
+    padding-top: 2.5rem;
     padding-bottom: 3rem;
 }
 
 .hero-card {
     background: linear-gradient(135deg, #ff7eb6 0%, #ff5ea2 50%, #ffb3d5 100%);
     border-radius: 28px;
-    padding: 30px 26px;
+    padding: 32px 26px;
     color: white;
-    box-shadow: 0 18px 42px rgba(255, 94, 162, 0.22);
-    margin-bottom: 14px;
+    
+    margin-top: 28px;
+    margin-bottom: 18px;
+    
+    box-shadow: 0 18px 42px rgba(255, 94, 162, 0.25);
 }
 
 .info-card {
@@ -146,7 +149,7 @@ st.markdown("""
 
 .section-title {
     color: #4c444a;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 800;
     margin-bottom: 8px;
 }
