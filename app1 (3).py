@@ -415,7 +415,7 @@ RESULT_MAP = {
     },
     (1, 0, 0): {
         "title": "솔로지만 연애는 하고 싶어",
-        "subtitle": "연애 결핍형",
+        "subtitle": "연애 갈망형",
         "image": "images/results/love.jpg",
         "keywords": ["연애", "외로움", "설렘부족"],
         "prescription": [
@@ -447,7 +447,7 @@ RESULT_MAP = {
     },
     (1, 1, 0): {
         "title": "세상이 호락호락하지 않죠?",
-        "subtitle": "연애 결핍형+시험 불안형",
+        "subtitle": "연애 갈망형+시험 불안형",
         "image": "images/results/22.jpg",
         "keywords": ["연애", "시험", "멘붕"],
         "prescription": [
@@ -458,7 +458,7 @@ RESULT_MAP = {
     },
     (1, 0, 1): {
         "title": "세상이 호락호락하지 않죠?",
-        "subtitle": "연애 결핍형+생활 지침형",
+        "subtitle": "연애 갈망형+생활 지침형",
         "image": "images/results/22.jpg",
         "keywords": ["외로움", "피로", "감정소모"],
         "prescription": [
