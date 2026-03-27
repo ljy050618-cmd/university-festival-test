@@ -414,7 +414,7 @@ RESULT_MAP = {
         ],
     },
     (1, 0, 0): {
-        "title": "벚꽃 시즌 최대 피해자",
+        "title": "솔로지만 연애는 하고 싶어",
         "subtitle": "연애 결핍형",
         "image": "images/results/love.jpg",
         "keywords": ["연애", "외로움", "설렘부족"],
