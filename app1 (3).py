@@ -416,7 +416,7 @@ RESULT_MAP = {
     (1, 0, 0): {
         "title": "솔로지만 연애는 하고 싶어",
         "subtitle": "연애 갈망형",
-        "image": "images/results/love.jpg",
+        "image": "images/results/love.png",
         "keywords": ["연애", "외로움", "설렘부족"],
         "prescription": [
             "누구보다 강하게 연애를 하고 싶어하는군요! 이 정도면 떨어지는 벚꽃만 봐도 눈물이 또르륵하겠는걸요.",
