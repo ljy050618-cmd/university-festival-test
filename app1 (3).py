@@ -850,6 +850,8 @@ else:
             <div class="result-top">
                 <div class="meta" style="color:#fff7fb; font-weight:700;">최종 진단 결과</div>
                 <div class="title-xl">{result["title"]}</div>
+                <div class="subtitle" style="color:white; text-align:center; margin-top:8px;">
+                    {result["subtitle"]}</div>
         </div>
         """,
         unsafe_allow_html=True
