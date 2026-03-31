@@ -620,7 +620,13 @@ if st.session_state.scroll_to_top:
     components.html(
         """
         <script>
-            window.parent.scrollTo(0, 0);
+            setTimeout(() => {
+                window.parent.scrollTo(0, 0);
+            }, 150);
+
+            setTimeout(() => {
+                window.parent.scrollTo(0, 0);
+            }, 350);
         </script>
         """,
         height=0,
