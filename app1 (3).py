@@ -517,7 +517,7 @@ if "responses" not in st.session_state:
         "campus": [None] * 5,
     }
  if "result_recorded" not in st.session_state:
- st.session_state.result_recorded = False
+     st.session_state.result_recorded = False
 
 # =========================================================
 # 유틸 함수
