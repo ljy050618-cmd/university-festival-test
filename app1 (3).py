@@ -9,7 +9,7 @@ from collections import Counter
 # 페이지 기본 설정
 # =========================================================
 st.set_page_config(
-    page_title="무면허진료소 정합 건강 문진표",
+    page_title="무면허진료소 종합 건강 문진표",
     page_icon="🩺",
     layout="centered"
 )
