@@ -516,7 +516,7 @@ if "responses" not in st.session_state:
         "grade": [None] * 5,
         "campus": [None] * 5,
     }
- if "result_recorded" not in st.session_state:
+if "result_recorded" not in st.session_state:
      st.session_state.result_recorded = False
 
 # =========================================================
@@ -539,6 +539,36 @@ def save_result_stats(stats):
     ensure_stats_dir()
     with open(STATS_FILE, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
+
+def save_result_stats(stats):
+    ensure_stats_dir()
+    with open(STATS_FILE, "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
+
+
+def record_result(result_key):
+    stats = load_result_stats()
+    key = str(result_key)
+    stats[key] = stats.get(key, 0) + 1
+    save_result_stats(stats)
+
+def render_result_ranking():
+    stats = load_result_stats()
+
+    if not stats:
+        st.markdown("아직 집계된 결과가 없습니다.")
+        return
+
+    sorted_stats = sorted(stats.items(), key=lambda x: x[1], reverse=True)
+    total = sum(stats.values())
+
+    st.markdown("### 📊 유형별 결과 통계")
+
+    for rank, (key, count) in enumerate(sorted_stats, start=1):
+        label = RESULT_MAP.get(eval(key), {}).get("subtitle", key)
+        ratio = count / total if total > 0 else 0
+        st.markdown(f"**{rank}위. {label}** · {count}명")
+        st.progress(ratio)
         
 if "scroll_to_top" not in st.session_state:
     st.session_state.scroll_to_top = False
@@ -965,4 +995,5 @@ else:
             }
             st.session_state.result_recorded = False
             st.rerun()
-   
+    
+    render_result_ranking()
