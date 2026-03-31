@@ -556,6 +556,7 @@ def record_result(result_key):
     save_result_stats(stats)
 
 def render_result_ranking():
+    stats=load_result_stats()
     st.markdown("""
     <div class="info-card">
             <div class="section-title">유형별 결과 통계</div>
