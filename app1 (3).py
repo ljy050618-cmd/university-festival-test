@@ -585,6 +585,8 @@ def render_result_ranking():
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+
     for rank, (key, count) in enumerate(sorted_stats, start=1):
         result_key = eval(key)
         result_info = RESULT_MAP.get(result_key, {})
