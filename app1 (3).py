@@ -519,6 +519,9 @@ if "responses" not in st.session_state:
 if "result_recorded" not in st.session_state:
      st.session_state.result_recorded = False
 
+if "show_stats" not in st.session_state:
+    st.session_state.show_stats = False
+
 # =========================================================
 # 유틸 함수
 # =========================================================
@@ -984,9 +987,10 @@ else:
 
     st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([1,2,1])
-    with col2:
-        if st.button("다시 검사하기"):
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if st.button("다시 검사하기", use_container_width=True):
             st.session_state.page_index = 0
             st.session_state.responses = {
                 "love": [None] * 5,
@@ -994,6 +998,13 @@ else:
                 "campus": [None] * 5,
             }
             st.session_state.result_recorded = False
+            st.session_state.show_stats = False
             st.rerun()
     
-    render_result_ranking()
+    with col2:
+        if st.button("통계 보기", use_container_width=True):
+            st.session_state.show_stats = not st.session_state.show_stats
+    
+    if st.session_state.show_stats:
+        st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
+        render_result_ranking()
