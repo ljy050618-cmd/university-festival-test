@@ -984,7 +984,7 @@ elif st.session_state.page_index == 4:
 
     title_class = "title-xl small-title" if result.get("small") else "title-xl"
     
-    st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
+    
 
         
     love_score = get_section_score("love")
