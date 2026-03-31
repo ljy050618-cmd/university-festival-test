@@ -142,6 +142,12 @@ st.markdown("""
     line-height: 1.75;
 }
 
+.subtitle{
+    color: #5b555d;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
 .meta {
     color: #7b737b;
     font-size: 14px;
@@ -844,8 +850,6 @@ else:
             <div class="result-top">
                 <div class="meta" style="color:#fff7fb; font-weight:700;">최종 진단 결과</div>
                 <div class="title-xl">{result["title"]}</div>
-                <div class="body-text" style="color:white; margin-top:10px;">{result["subtitle"]}</div>
-            </div>
         </div>
         """,
         unsafe_allow_html=True
