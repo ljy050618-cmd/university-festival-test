@@ -486,7 +486,7 @@ RESULT_MAP = {
         ],
     },
     (1, 1, 1): {
-        "title": "대학생학대는 거꾸로 해도 대학생학대",
+        "title": "대학생학대<br>거꾸로 해도<br>대학생학대",
         "subtitle": "총체적 난국형",
         "image": "images/results/all_risk.jpg",
         "keywords": ["연애", "시험", "생활", "총체적난국"],
