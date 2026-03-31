@@ -557,19 +557,31 @@ def record_result(result_key):
 
 def render_result_ranking():
     stats=load_result_stats()
-    st.markdown("""
-    <div class="info-card">
+    
+    if not stats:
+        st.markdown("""
+        <div class="info-card">
             <div class="section-title">유형별 결과 통계</div>
             <div class="body-text">아직 집계된 결과가 없습니다.</div>
         </div>
         """, unsafe_allow_html=True)
- 
+        return
+    
     sorted_stats = sorted(stats.items(), key=lambda x: x[1], reverse=True)
     total = sum(stats.values())
 
     st.markdown("""
     <div class="info-card">
         <div class="section-title">유형별 결과 통계</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div class="score-box">
+        <div class="section-title">누적 참여자 수</div>
+        <div class="body-text">
+            지금까지 <b>{total}명</b>의 대학생이 문진에 참여했어요 🔥
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -975,14 +987,6 @@ elif st.session_state.page_index == 4:
         unsafe_allow_html=True
     )
 
-    st.markdown(f"""
-    <div class="score-box">
-        <div class="section-title">누적 참여자 수</div>
-        <div class="body-text">
-            지금까지 <b>{total}명</b>의 대학생이 문진에 참여했어요 🔥
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
     
     st.markdown(
         "".join([f"<span class='keyword'>{word}</span>" for word in result["keywords"]]),
@@ -1047,7 +1051,7 @@ elif st.session_state.page_index == 5:
     """, unsafe_allow_html=True)
 
     render_result_ranking()
-    total = sum(stats.values())
+   
 
     st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
 
