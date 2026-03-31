@@ -109,6 +109,7 @@ st.markdown("""
     text-align: center;
     white-space: normal;
     word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 .title-lg {
