@@ -557,21 +557,37 @@ def record_result(result_key):
 
 def render_result_ranking():
     stats = load_result_stats()
-
-    if not stats:
-        st.markdown("아직 집계된 결과가 없습니다.")
-        return
-
+    <div class="info-card">
+            <div class="section-title">유형별 결과 통계</div>
+            <div class="body-text">아직 집계된 결과가 없습니다.</div>
+        </div>
+        """, unsafe_allow_html=True)
+ 
     sorted_stats = sorted(stats.items(), key=lambda x: x[1], reverse=True)
     total = sum(stats.values())
 
-    st.markdown("### 📊 유형별 결과 통계")
+    st.markdown("""
+    <div class="info-card">
+        <div class="section-title">유형별 결과 통계</div>
+    </div>
+    """, unsafe_allow_html=True)
 
     for rank, (key, count) in enumerate(sorted_stats, start=1):
-        label = RESULT_MAP.get(eval(key), {}).get("subtitle", key)
+        result_key = eval(key)
+        result_info = RESULT_MAP.get(result_key, {})
+        label = result_info.get("subtitle", key)
+        image_path = result_info.get("image")
         ratio = count / total if total > 0 else 0
-        st.markdown(f"**{rank}위. {label}** · {count}명")
-        st.progress(ratio)
+
+        img_col, text_col = st.columns([1, 4], gap="small")
+
+        with img_col:
+            if image_path and os.path.exists(image_path):
+                st.image(image_path, width=70)
+
+        with text_col:
+            st.markdown(f"**{rank}위. {label}** · {count}명")
+            st.progress(ratio)    
         
 if "scroll_to_top" not in st.session_state:
     st.session_state.scroll_to_top = False
