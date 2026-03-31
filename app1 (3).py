@@ -602,7 +602,10 @@ def render_result_ranking():
 
         with text_col:
             percent = ratio * 100
-            st.markdown(f"**{rank}위. {label}** · {count}명 ({percent:.1f}%)")
+            st.markdown(
+                f"**{rank}위. {label}** · {count}명&nbsp;&nbsp;<span style='color:#d63384; font-weight:700;'>({percent:.1f}%)</span>",
+                unsafe_allow_html=True
+            )
             st.progress(ratio)    
         
 if "scroll_to_top" not in st.session_state:
