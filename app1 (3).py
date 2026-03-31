@@ -622,9 +622,13 @@ if st.session_state.scroll_to_top:
         <script>
              function smoothGoTop() {
                 const anchor =
+                    document.getElementById("result-top") ||
+                    document.getElementById("page-top") ||
                     document.getElementById("top-anchor") ||
                     (window.parent && window.parent.document
-                        ? window.parent.document.getElementById("top-anchor")
+                        ? window.parent.document.getElementById("result-top") ||
+                          window.parent.document.getElementById("page-top") || 
+                          window.parent.document.getElementById("top-anchor")
                         : null);
 
                 if (anchor) {
@@ -962,7 +966,9 @@ elif st.session_state.page_index in [1, 2, 3]:
 # =========================================================
 elif st.session_state.page_index == 4:
     
-    st.markdown('<div id="page-top"></div>', unsafe_allow_html=True)  
+    st.markdown('<div id="page-top"></div>', unsafe_allow_html=True)
+    st.markdown('<div id="result-top"></div>', unsafe_allow_html=True)
+    
     if not all_test_answered():
         st.warning("아직 응답하지 않은 문항이 있습니다. 이전 페이지로 돌아가 주세요.")
         if st.button("문항으로 돌아가기"):
@@ -985,7 +991,7 @@ elif st.session_state.page_index == 4:
     grade_score = get_section_score("grade")
     campus_score = get_section_score("campus")
 
-   
+   st.markdown('<div id="result-top"></div>', unsafe_allow_html=True)
     
     st.markdown(
         f"""
