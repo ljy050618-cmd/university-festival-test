@@ -4,6 +4,7 @@ import json
 import streamlit.components.v1 as components
 import os
 from PIL import Image
+from collections import Counter
 # =========================================================
 # 페이지 기본 설정
 # =========================================================
@@ -840,7 +841,76 @@ else:
         st.stop()
 
     result_key = get_result_key()
+
+    STATS_FILE = "result_stats.json"
+
+def load_result_stats():
+    if os.path.exists(STATS_FILE):
+        with open(STATS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+def save_result_stats(stats):
+    with open(STATS_FILE, "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
+
+def record_result(result_key):
+    stats = load_result_stats()
+    key = str(result_key)   # 예: "(1, 1, 1)"
+    stats[key] = stats.get(key, 0) + 1
+    save_result_stats(stats)
+
+def get_result_label_map():
+    return {
+        str(k): v["subtitle"] for k, v in RESULT_MAP.items()
+    }
+
+def render_result_ranking():
+    stats = load_result_stats()
+    label_map = get_result_label_map()
+
+    if not stats:
+        st.markdown("아직 집계된 결과가 없습니다.")
+        return
+
+    sorted_stats = sorted(stats.items(), key=lambda x: x[1], reverse=True)
+    total = sum(stats.values())
+
+    st.markdown(
+        """
+        <div class="info-card">
+            <div class="section-title">유형별 결과 통계</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    for rank, (key, count) in enumerate(sorted_stats, start=1):
+        label = label_map.get(key, key)
+        ratio = (count / total) if total > 0 else 0
+        st.markdown(f"**{rank}위. {label}** · {count}명")
+        st.progress(ratio)
+
+    st.markdown(
+        f"""
+        <div class="score-box">
+            <div class="section-title">실시간 랭킹 요약</div>
+            <div class="body-text">
+                현재까지 총 <b>{total}명</b>의 결과가 집계되었습니다.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+
+
+    
     result = RESULT_MAP[result_key]
+
+    if not st.session_state.result_recorded:
+        record_result(result_key)
+        st.session_state.result_recorded = True
 
     title_class = "title-xl small-title" if result.get("small") else "title-xl"
     
@@ -939,5 +1009,6 @@ else:
                 "grade": [None] * 5,
                 "campus": [None] * 5,
             }
+            st.session_state.result_recorded = False
             st.rerun()
    
