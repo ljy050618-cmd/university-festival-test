@@ -149,6 +149,10 @@ st.markdown("""
     line-height: 1.75;
 }
 
+.small-title {
+    font-size: 24px;
+}
+
 .meta {
     color: #7b737b;
     font-size: 14px;
@@ -837,7 +841,8 @@ else:
     result_key = get_result_key()
     result = RESULT_MAP[result_key]
 
-
+    title_class = "title-xl small-title" if result.get("small") else "title-xl"
+    
     st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
 
         
@@ -845,12 +850,14 @@ else:
     grade_score = get_section_score("grade")
     campus_score = get_section_score("campus")
 
+   
+    
     st.markdown(
         f"""
         <div class="result-card">
             <div class="result-top">
                 <div class="meta" style="color:#fff7fb; font-weight:700;">최종 진단 결과</div>
-                <div class="title-xl">{result["title"]}</div>
+                <div class="{title_class}">{result["title"]}</div>
                 <div class="subtitle" style="color:white; text-align: left; margin-top:8px;">
                     {result["subtitle"]}</div>
         </div>
