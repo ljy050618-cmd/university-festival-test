@@ -961,6 +961,8 @@ elif st.session_state.page_index in [1, 2, 3]:
 # 5페이지 결과 화면
 # =========================================================
 elif st.session_state.page_index == 4:
+    
+    st.markdown('<div id="page-top"></div>', unsafe_allow_html=True)  
     if not all_test_answered():
         st.warning("아직 응답하지 않은 문항이 있습니다. 이전 페이지로 돌아가 주세요.")
         if st.button("문항으로 돌아가기"):
@@ -1082,13 +1084,12 @@ elif st.session_state.page_index == 4:
         if st.button("통계 보기", use_container_width=True):
             go_to_page(5)
     
-    if st.session_state.show_stats:
-        st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
-        render_result_ranking()
+ 
 
 
 elif st.session_state.page_index == 5:
 
+    st.markdown('<div id="page-top"></div>', unsafe_allow_html=True) 
     st.markdown("""
     <div class="hero-card">
         <div class="meta" style="color:#fff6fb; font-weight:700;">통계 페이지</div>
