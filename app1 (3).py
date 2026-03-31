@@ -150,7 +150,7 @@ st.markdown("""
 }
 
 .small-title {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .meta {
