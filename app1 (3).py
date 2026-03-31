@@ -601,7 +601,8 @@ def render_result_ranking():
                 st.image(image_path, width=70)
 
         with text_col:
-            st.markdown(f"**{rank}위. {label}** · {count}명")
+            percent = ratio * 100
+            st.markdown(f"**{rank}위. {label}** · {count}명 ({percent:.1f}%)")
             st.progress(ratio)    
         
 if "scroll_to_top" not in st.session_state:
