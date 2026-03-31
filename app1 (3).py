@@ -598,7 +598,7 @@ def render_result_ranking():
 
         with img_col:
             if image_path and os.path.exists(image_path):
-                st.image(image_path, width=70)
+                st.image(image_path, width=40)
 
         with text_col:
             percent = ratio * 100
