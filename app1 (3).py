@@ -991,7 +991,7 @@ elif st.session_state.page_index == 4:
     grade_score = get_section_score("grade")
     campus_score = get_section_score("campus")
 
-   st.markdown('<div id="result-top"></div>', unsafe_allow_html=True)
+    st.markdown('<div id="result-top"></div>', unsafe_allow_html=True)
     
     st.markdown(
         f"""
