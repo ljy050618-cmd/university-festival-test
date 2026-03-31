@@ -227,7 +227,7 @@ hr {
 }
 </style>
 """, unsafe_allow_html=True)
-
+st.markdown('<div id="top-anchor"></div>', unsafe_allow_html=True)
 # =========================================================
 # 테스트 데이터
 # 첨부 문서의 문항 내용을 그대로 반영
@@ -620,13 +620,46 @@ if st.session_state.scroll_to_top:
     components.html(
         """
         <script>
-            setTimeout(() => {
-                window.parent.scrollTo(0, 0);
-            }, 150);
+             function smoothGoTop() {
+                const anchor =
+                    document.getElementById("top-anchor") ||
+                    (window.parent && window.parent.document
+                        ? window.parent.document.getElementById("top-anchor")
+                        : null);
 
-            setTimeout(() => {
-                window.parent.scrollTo(0, 0);
-            }, 350);
+                if (anchor) {
+                    try {
+                        anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+                    } catch (e) {}
+                }
+
+                try {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                } catch (e) {
+                    window.scrollTo(0, 0);
+                }
+
+                try {
+                    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+                } catch (e) {
+                    document.documentElement.scrollTop = 0;
+                }
+
+                try {
+                    document.body.scrollTo({ top: 0, behavior: "smooth" });
+                } catch (e) {
+                    document.body.scrollTop = 0;
+                }
+
+                try {
+                    window.parent.scrollTo({ top: 0, behavior: "smooth" });
+                } catch (e) {}
+            }
+
+            smoothGoTop();
+            setTimeout(smoothGoTop, 120);
+            setTimeout(smoothGoTop, 320);
+            setTimeout(smoothGoTop, 650);  
         </script>
         """,
         height=0,
