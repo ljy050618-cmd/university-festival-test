@@ -885,7 +885,7 @@ elif st.session_state.page_index in [1, 2, 3]:
 # =========================================================
 # 5페이지 결과 화면
 # =========================================================
-else:
+elif st.session_state.page_index == 4:
     if not all_test_answered():
         st.warning("아직 응답하지 않은 문항이 있습니다. 이전 페이지로 돌아가 주세요.")
         if st.button("문항으로 돌아가기"):
@@ -1003,8 +1003,39 @@ else:
     
     with col2:
         if st.button("통계 보기", use_container_width=True):
-            st.session_state.show_stats = not st.session_state.show_stats
+            go_to_page(5)
     
     if st.session_state.show_stats:
         st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
         render_result_ranking()
+
+
+elif st.session_state.page_index == 5:
+
+    st.markdown("""
+    <div class="hero-card">
+        <div class="meta" style="color:#fff6fb; font-weight:700;">통계 페이지</div>
+        <div class="title-xl">유형별 결과 통계</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    render_result_ranking()
+
+    st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if st.button("결과로 돌아가기", use_container_width=True):
+            go_to_page(4)
+
+    with col2:
+        if st.button("처음으로", use_container_width=True):
+            st.session_state.page_index = 0
+            st.session_state.responses = {
+                "love": [None] * 5,
+                "grade": [None] * 5,
+                "campus": [None] * 5,
+            }
+            st.session_state.result_recorded = False
+            st.rerun()
