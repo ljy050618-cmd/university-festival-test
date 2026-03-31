@@ -657,9 +657,10 @@ if st.session_state.scroll_to_top:
             }
 
             smoothGoTop();
-            setTimeout(smoothGoTop, 120);
-            setTimeout(smoothGoTop, 320);
-            setTimeout(smoothGoTop, 650);  
+            setTimeout(smoothGoTop, 100);
+            setTimeout(smoothGoTop, 300);
+            setTimeout(smoothGoTop, 700);
+            setTimeout(smoothGoTop, 1200);
         </script>
         """,
         height=0,
