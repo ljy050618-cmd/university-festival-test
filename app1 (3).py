@@ -974,6 +974,16 @@ elif st.session_state.page_index == 4:
         """,
         unsafe_allow_html=True
     )
+
+    st.markdown(f"""
+    <div class="score-box">
+        <div class="section-title">누적 참여자 수</div>
+        <div class="body-text">
+            지금까지 <b>{total}명</b>의 대학생이 문진에 참여했어요 🔥
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown(
         "".join([f"<span class='keyword'>{word}</span>" for word in result["keywords"]]),
         unsafe_allow_html=True
@@ -1037,6 +1047,7 @@ elif st.session_state.page_index == 5:
     """, unsafe_allow_html=True)
 
     render_result_ranking()
+    total = sum(stats.values())
 
     st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
 
