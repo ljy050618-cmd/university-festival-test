@@ -692,9 +692,9 @@ def get_progress_value() -> float:
     return 1.0
 
 def get_result_key():
-    love_high = 1 if get_section_score("love") >= 55 else 0
-    grade_high = 1 if get_section_score("grade") >= 55 else 0
-    campus_high = 1 if get_section_score("campus") >= 55 else 0
+    love_high = 1 if get_section_score("love") >= 35 else 0
+    grade_high = 1 if get_section_score("grade") >= 35 else 0
+    campus_high = 1 if get_section_score("campus") >= 35 else 0
     return (love_high, grade_high, campus_high)
 import json
 import streamlit.components.v1 as components
@@ -1063,7 +1063,7 @@ elif st.session_state.page_index == 4:
         <div class="score-box">
             <div class="section-title">판정 기준</div>
             <div class="body-text">
-                각 영역 100점 만점 기준으로 55점 이상이면 해당 영역 위험 신호로 분류합니다.
+                각 영역 100점 만점 기준으로 ??점 이상이면 해당 영역 위험 신호로 분류합니다.
             </div>
         </div>
         """,
