@@ -694,7 +694,7 @@ def get_progress_value() -> float:
 def get_result_key():
     love_high = 1 if get_section_score("love") >= 35 else 0
     grade_high = 1 if get_section_score("grade") >= 35 else 0
-    campus_high = 1 if get_section_score("campus") >= 35 else 0
+    campus_high = 1 if get_section_score("campus") >= 50 else 0
     return (love_high, grade_high, campus_high)
 import json
 import streamlit.components.v1 as components
